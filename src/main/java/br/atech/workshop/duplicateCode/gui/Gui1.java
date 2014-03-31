@@ -57,6 +57,13 @@ public class Gui1 extends AbstractGui {
 	 */
 	protected void addBtn1Listeners() {
 		btn1.addActionListener(new ActionListener() {
+			/*
+			 * (non-Javadoc)
+			 * 
+			 * @see
+			 * java.awt.event.ActionListener#actionPerformed(java.awt.event.
+			 * ActionEvent)
+			 */
 			@Override
 			public void actionPerformed(ActionEvent event) {
 				try {
@@ -76,6 +83,13 @@ public class Gui1 extends AbstractGui {
 	 */
 	protected void addBtn2Listeners() {
 		btn2.addActionListener(new ActionListener() {
+			/*
+			 * (non-Javadoc)
+			 * 
+			 * @see
+			 * java.awt.event.ActionListener#actionPerformed(java.awt.event.
+			 * ActionEvent)
+			 */
 			@Override
 			public void actionPerformed(ActionEvent event) {
 				try {
@@ -95,6 +109,13 @@ public class Gui1 extends AbstractGui {
 	 */
 	protected void addBtn3Listeners() {
 		btn3.addActionListener(new ActionListener() {
+			/*
+			 * (non-Javadoc)
+			 * 
+			 * @see
+			 * java.awt.event.ActionListener#actionPerformed(java.awt.event.
+			 * ActionEvent)
+			 */
 			@Override
 			public void actionPerformed(ActionEvent event) {
 				try {
@@ -115,16 +136,37 @@ public class Gui1 extends AbstractGui {
 	protected void addNamefieldListeners() {
 		namefield.getDocument().addDocumentListener(new DocumentListener() {
 
+			/*
+			 * (non-Javadoc)
+			 * 
+			 * @see
+			 * javax.swing.event.DocumentListener#removeUpdate(javax.swing.event
+			 * .DocumentEvent)
+			 */
 			@Override
 			public void removeUpdate(DocumentEvent e) {
 				changedUpdate(e);
 			}
 
+			/*
+			 * (non-Javadoc)
+			 * 
+			 * @see
+			 * javax.swing.event.DocumentListener#insertUpdate(javax.swing.event
+			 * .DocumentEvent)
+			 */
 			@Override
 			public void insertUpdate(DocumentEvent e) {
 				changedUpdate(e);
 			}
 
+			/*
+			 * (non-Javadoc)
+			 * 
+			 * @see
+			 * javax.swing.event.DocumentListener#changedUpdate(javax.swing.
+			 * event.DocumentEvent)
+			 */
 			@Override
 			public void changedUpdate(DocumentEvent e) {
 				resultfield.setText("");

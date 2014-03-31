@@ -21,11 +21,18 @@ public abstract class ActionGui extends AbstractGui {
 	 */
 	@Override
 	public void show() {
+		instrument();
+		super.show();
+	}
+
+	/**
+	 * 
+	 */
+	protected void instrument() {
 		if (actionListener == null) {
 			actionListener = new CustomEventListener<>(this,
 					new ExceptionHandler(this));
 		}
-		super.show();
 	}
 
 	/**
