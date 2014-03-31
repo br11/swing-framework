@@ -1,7 +1,7 @@
 /**
  * 
  */
-package br.atech.workshop.duplicateCode.util;
+package br.atech.workshop.duplicateCode.dry;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -10,7 +10,6 @@ import java.lang.reflect.InvocationTargetException;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
-import br.atech.workshop.duplicateCode.gui.ExceptionHandler;
 import br.atech.workshop.duplicateCode.gui.GuiControler;
 
 /**
@@ -40,7 +39,7 @@ public class BaseEventListener<T extends GuiControler> implements
 
 	/**
 	 * 
-	 * @return 
+	 * @return
 	 */
 	public T getControler() {
 		return util.getControler();
@@ -98,7 +97,13 @@ public class BaseEventListener<T extends GuiControler> implements
 	 */
 	@Override
 	public void insertUpdate(DocumentEvent event) {
-		changedUpdate(event);
+		try {
+			onChange(event);
+		} catch (InvocationTargetException e) {
+			onException(e.getCause(), event);
+		} catch (Exception e) {
+			onException(e, event);
+		}
 	}
 
 	/*
@@ -109,7 +114,13 @@ public class BaseEventListener<T extends GuiControler> implements
 	 */
 	@Override
 	public void removeUpdate(DocumentEvent event) {
-		changedUpdate(event);
+		try {
+			onChange(event);
+		} catch (InvocationTargetException e) {
+			onException(e.getCause(), event);
+		} catch (Exception e) {
+			onException(e, event);
+		}
 	}
 
 	/*
@@ -128,4 +139,5 @@ public class BaseEventListener<T extends GuiControler> implements
 			onException(e, event);
 		}
 	}
+
 }

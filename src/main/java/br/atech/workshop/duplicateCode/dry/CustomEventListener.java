@@ -1,11 +1,11 @@
 /**
  * 
  */
-package br.atech.workshop.duplicateCode.gui;
+package br.atech.workshop.duplicateCode.dry;
 
 import java.awt.event.ActionEvent;
 
-import br.atech.workshop.duplicateCode.util.BaseEventListener;
+import br.atech.workshop.duplicateCode.gui.AbstractGui;
 
 /**
  * 
@@ -13,7 +13,7 @@ import br.atech.workshop.duplicateCode.util.BaseEventListener;
  * 
  * @param <T>
  */
-public class ButtonEventListener<T extends AbstractGui> extends
+public class CustomEventListener<T extends AbstractGui> extends
 		BaseEventListener<T> {
  
 	/**
@@ -21,7 +21,7 @@ public class ButtonEventListener<T extends AbstractGui> extends
 	 * @param controler
 	 * @param exHandler
 	 */
-	public ButtonEventListener(T controler, ExceptionHandler exHandler) {
+	public CustomEventListener(T controler, ExceptionHandler exHandler) {
 		super(controler, exHandler);
 	}
 

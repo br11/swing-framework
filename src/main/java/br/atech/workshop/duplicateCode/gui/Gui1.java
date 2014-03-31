@@ -22,7 +22,7 @@ public class Gui1 extends AbstractGui {
 	final JLabel namelbl;
 	final JTextField namefield;
 	final JLabel resultlbl;
-	final JTextField resultfield;
+	final JLabel resultfield;
 
 	final JButton btn1;
 	final JButton btn2;
@@ -40,8 +40,7 @@ public class Gui1 extends AbstractGui {
 		namelbl = addContent(new JLabel("Name:"));
 		namefield = addContent(new JTextField());
 		resultlbl = addContent(new JLabel("Result:"));
-		resultfield = addContent(new JTextField());
-		resultfield.setEditable(false);
+		resultfield = addContent(new JLabel(""));
 
 		btn1 = addAction(new JButton("Button 1"));
 		btn2 = addAction(new JButton("Button 2"));

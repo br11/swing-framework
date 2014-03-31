@@ -1,4 +1,4 @@
-package br.atech.workshop.duplicateCode.util;
+package br.atech.workshop.duplicateCode.dry;
 
 import java.awt.event.ActionEvent;
 import java.lang.reflect.Field;
@@ -57,7 +57,8 @@ public class EventUtil<T extends GuiControler> {
 	void init() throws NoSuchMethodException, SecurityException,
 			IllegalArgumentException, IllegalAccessException {
 
-		Class<?> type = getControler().getClass();
+		Class<?> controlerType = getControler().getClass();
+		Class<?> type = controlerType;
 		while (type != null && !type.equals(Object.class)) {
 			for (Field field : type.getDeclaredFields()) {
 				if (JComponent.class.isAssignableFrom(field.getType())) {
@@ -65,16 +66,21 @@ public class EventUtil<T extends GuiControler> {
 					JComponent component = (JComponent) field.get(controler);
 
 					if (component instanceof JButton) {
-						if (findEventMethod(type, component, field.getName()
-								+ "OnClick", ActionEvent.class)) {
+						if (findEventMethod(controlerType, component,
+								field.getName() + "OnClick", ActionEvent.class)
+								|| findEventMethod(controlerType, component,
+										"anyOnClick", ActionEvent.class)) {
 							((JButton) component)
 									.addActionListener(actionListener);
 						}
 					} else if (component instanceof JTextField) {
-						if (findEventMethod(type,
+						if (findEventMethod(controlerType,
 								((JTextField) component).getDocument(),
 								field.getName() + "OnChange",
-								DocumentEvent.class)) {
+								DocumentEvent.class)
+								|| findEventMethod(controlerType,
+										((JTextField) component).getDocument(),
+										"anyOnChange", DocumentEvent.class)) {
 							((JTextField) component).getDocument()
 									.addDocumentListener(actionListener);
 						}
@@ -85,17 +91,25 @@ public class EventUtil<T extends GuiControler> {
 		}
 	}
 
-	private boolean findEventMethod(Class<?> type, Object source,
+	private boolean findEventMethod(Class<?> controlerType, Object source,
 			String command, Class<?> eventType) throws NoSuchMethodException {
-		try {
-			System.out.println(String.format("[%s] // [%s]", type.getName(), command));
-			Method method = type.getDeclaredMethod(command, eventType);
-			method.setAccessible(true);
-			methods.put(source, method);
-			return true;
-		} catch (NoSuchMethodException e) {
-			return false;
+		Method method = null;
+
+		Class<?> type = controlerType;
+		while (type != null && !type.equals(Object.class) && method == null) {
+			try {
+				System.out.println(String.format("[%s] // [%s]",
+						type.getName(), command));
+				method = type.getDeclaredMethod(command, eventType);
+				method.setAccessible(true);
+				methods.put(source, method);
+				break;
+			} catch (NoSuchMethodException e) {
+			}
+			type = type.getSuperclass();
 		}
+
+		return method != null;
 	}
 
 	/**

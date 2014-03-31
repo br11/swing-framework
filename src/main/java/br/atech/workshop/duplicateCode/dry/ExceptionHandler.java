@@ -1,6 +1,7 @@
-package br.atech.workshop.duplicateCode.gui;
+package br.atech.workshop.duplicateCode.dry;
 
 import br.atech.workshop.duplicateCode.app.AppException;
+import br.atech.workshop.duplicateCode.gui.GuiControler;
 
 /**
  * 

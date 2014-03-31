@@ -5,10 +5,10 @@ import java.awt.event.ActionEvent;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
-import javax.swing.event.DocumentEvent;
 
 import br.atech.workshop.duplicateCode.app.App;
 import br.atech.workshop.duplicateCode.app.AppException;
+import br.atech.workshop.duplicateCode.dry.ActionGui;
 
 /**
  * 
@@ -20,7 +20,7 @@ public class Gui2 extends ActionGui {
 	final JLabel namelbl;
 	final JTextField namefield;
 	final JLabel resultlbl;
-	final JTextField resultfield;
+	final JLabel resultfield;
 
 	final JButton btn1;
 	final JButton btn2;
@@ -38,8 +38,7 @@ public class Gui2 extends ActionGui {
 		namelbl = addContent(new JLabel("Name:"));
 		namefield = addContent(new JTextField());
 		resultlbl = addContent(new JLabel("Result:"));
-		resultfield = addContent(new JTextField());
-		resultfield.setEditable(false);
+		resultfield = addContent(new JLabel(""));
 
 		btn1 = addAction(new JButton("Button 1"));
 		btn2 = addAction(new JButton("Button 2"));
@@ -71,15 +70,6 @@ public class Gui2 extends ActionGui {
 	 */
 	protected void btn3OnClick(ActionEvent event) throws AppException {
 		resultfield.setText(app.feature3(namefield.getText()));
-	}
-
-	/**
-	 * 
-	 * @param event
-	 * @throws AppException
-	 */
-	protected void namefieldOnChange(DocumentEvent event) throws AppException {
-		reset();
 	}
 
 	/*
