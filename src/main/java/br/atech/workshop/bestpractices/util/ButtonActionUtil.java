@@ -23,7 +23,7 @@ public class ButtonActionUtil<T extends GuiControler> {
 
 	private final T controler;
 
-	private AbstractActionListener<T> actionListener;
+	private BaseActionListener<T> actionListener;
 
 	/**
 	 * 
@@ -35,7 +35,7 @@ public class ButtonActionUtil<T extends GuiControler> {
 	 * @throws IllegalAccessException
 	 */
 	public ButtonActionUtil(T controler,
-			AbstractActionListener<T> actionListener)
+			BaseActionListener<T> actionListener)
 			throws NoSuchMethodException, SecurityException,
 			IllegalArgumentException, IllegalAccessException {
 

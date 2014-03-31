@@ -14,7 +14,7 @@ import br.atech.workshop.bestpractices.gui.GuiControler;
  * @author marcio
  * 
  */
-public class AbstractActionListener<T extends GuiControler> implements
+public class BaseActionListener<T extends GuiControler> implements
 		ActionListener {
 
 	private ButtonActionUtil<T> util;
@@ -25,7 +25,7 @@ public class AbstractActionListener<T extends GuiControler> implements
 	 * @param controler
 	 * @param exHandler
 	 */
-	public AbstractActionListener(T controler, ExceptionHandler exHandler) {
+	public BaseActionListener(T controler, ExceptionHandler exHandler) {
 		try {
 			this.util = new ButtonActionUtil<T>(controler, this);
 			this.exHandler = exHandler;

@@ -5,7 +5,7 @@ package br.atech.workshop.bestpractices.gui;
 
 import java.awt.event.ActionEvent;
 
-import br.atech.workshop.bestpractices.util.AbstractActionListener;
+import br.atech.workshop.bestpractices.util.BaseActionListener;
 
 /**
  * 
@@ -14,7 +14,7 @@ import br.atech.workshop.bestpractices.util.AbstractActionListener;
  * @param <T>
  */
 public class ButtonActionListener<T extends AbstractGui> extends
-		AbstractActionListener<T> {
+		BaseActionListener<T> {
 
 	/**
 	 * 
