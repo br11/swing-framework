@@ -5,7 +5,7 @@ package br.atech.workshop.duplicateCode.gui;
 
 import java.awt.event.ActionEvent;
 
-import br.atech.workshop.duplicateCode.util.BaseActionListener;
+import br.atech.workshop.duplicateCode.util.BaseEventListener;
 
 /**
  * 
@@ -13,15 +13,15 @@ import br.atech.workshop.duplicateCode.util.BaseActionListener;
  * 
  * @param <T>
  */
-public class ButtonActionListener<T extends AbstractGui> extends
-		BaseActionListener<T> {
-
+public class ButtonEventListener<T extends AbstractGui> extends
+		BaseEventListener<T> {
+ 
 	/**
 	 * 
 	 * @param controler
 	 * @param exHandler
 	 */
-	public ButtonActionListener(T controler, ExceptionHandler exHandler) {
+	public ButtonEventListener(T controler, ExceptionHandler exHandler) {
 		super(controler, exHandler);
 	}
 
@@ -33,7 +33,7 @@ public class ButtonActionListener<T extends AbstractGui> extends
 	 * java.awt.event.ActionEvent)
 	 */
 	@Override
-	public void onAction(ActionEvent event) throws Exception {
+	public void onAction(ActionEvent event) throws Exception{
 		getControler().reset();
 		super.onAction(event);
 	}

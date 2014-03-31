@@ -5,6 +5,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
+import javax.swing.event.DocumentEvent;
 
 import br.atech.workshop.duplicateCode.app.App;
 import br.atech.workshop.duplicateCode.app.AppException;
@@ -50,7 +51,7 @@ public class Gui2 extends ActionGui {
 	 * @param event
 	 * @throws AppException
 	 */
-	protected void btn1Action(ActionEvent event) throws AppException {
+	protected void btn1OnClick(ActionEvent event) throws AppException {
 		resultfield.setText(app.feature1(namefield.getText()));
 	}
 
@@ -59,7 +60,7 @@ public class Gui2 extends ActionGui {
 	 * @param event
 	 * @throws AppException
 	 */
-	protected void btn2Action(ActionEvent event) throws AppException {
+	protected void btn2OnClick(ActionEvent event) throws AppException {
 		resultfield.setText(app.feature2(namefield.getText()));
 	}
 
@@ -68,8 +69,17 @@ public class Gui2 extends ActionGui {
 	 * @param event
 	 * @throws AppException
 	 */
-	protected void btn3Action(ActionEvent event) throws AppException {
+	protected void btn3OnClick(ActionEvent event) throws AppException {
 		resultfield.setText(app.feature3(namefield.getText()));
+	}
+
+	/**
+	 * 
+	 * @param event
+	 * @throws AppException
+	 */
+	protected void namefieldOnChange(DocumentEvent event) throws AppException {
+		reset();
 	}
 
 	/*

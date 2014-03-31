@@ -7,7 +7,7 @@ package br.atech.workshop.duplicateCode.gui;
  */
 public abstract class ActionGui extends AbstractGui {
 
-	private ButtonActionListener<ActionGui> actionListener;
+	private ButtonEventListener<ActionGui> actionListener;
 
 	/*
 	 * (non-Javadoc)
@@ -17,7 +17,7 @@ public abstract class ActionGui extends AbstractGui {
 	@Override
 	public void show() {
 		if (actionListener == null) { 
-			actionListener = new ButtonActionListener<>(this,  new ExceptionHandler(this));
+			actionListener = new ButtonEventListener<>(this,  new ExceptionHandler(this));
 		}
 		
 		super.show();

@@ -6,6 +6,8 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 
 import br.atech.workshop.duplicateCode.app.App;
 import br.atech.workshop.duplicateCode.app.AppException;
@@ -45,6 +47,7 @@ public class Gui1 extends AbstractGui {
 		btn2 = addAction(new JButton("Button 2"));
 		btn3 = addAction(new JButton("Button 3"));
 
+		addNamefieldListeners();
 		addBtn1Listeners();
 		addBtn2Listeners();
 		addBtn3Listeners();
@@ -58,6 +61,7 @@ public class Gui1 extends AbstractGui {
 			@Override
 			public void actionPerformed(ActionEvent event) {
 				try {
+					resultfield.setText("");
 					reset();
 					resultfield.setText(app.feature1(namefield.getText()));
 				} catch (AppException e) {
@@ -102,6 +106,30 @@ public class Gui1 extends AbstractGui {
 					e.printStackTrace();
 					error("System Error");
 				}
+			}
+		});
+	}
+
+	/**
+	 * 
+	 */
+	protected void addNamefieldListeners() {
+		namefield.getDocument().addDocumentListener(new DocumentListener() {
+
+			@Override
+			public void removeUpdate(DocumentEvent e) {
+				changedUpdate(e);
+			}
+
+			@Override
+			public void insertUpdate(DocumentEvent e) {
+				changedUpdate(e);
+			}
+
+			@Override
+			public void changedUpdate(DocumentEvent e) {
+				resultfield.setText("");
+				reset();
 			}
 		});
 	}

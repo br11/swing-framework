@@ -8,6 +8,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 import javax.swing.JButton;
+import javax.swing.JComponent;
+import javax.swing.JTextField;
+import javax.swing.event.DocumentEvent;
 
 import br.atech.workshop.duplicateCode.gui.GuiControler;
 
@@ -17,13 +20,13 @@ import br.atech.workshop.duplicateCode.gui.GuiControler;
  * 
  * @param <T>
  */
-public class ButtonActionUtil<T extends GuiControler> {
+public class EventUtil<T extends GuiControler> {
 
-	private Map<String, Method> methods = new HashMap<String, Method>();
+	private Map<Object, Method> methods = new HashMap<Object, Method>();
 
 	private final T controler;
 
-	private BaseActionListener<T> actionListener;
+	private BaseEventListener<T> actionListener;
 
 	/**
 	 * 
@@ -34,8 +37,7 @@ public class ButtonActionUtil<T extends GuiControler> {
 	 * @throws IllegalArgumentException
 	 * @throws IllegalAccessException
 	 */
-	public ButtonActionUtil(T controler,
-			BaseActionListener<T> actionListener)
+	public EventUtil(T controler, BaseEventListener<T> actionListener)
 			throws NoSuchMethodException, SecurityException,
 			IllegalArgumentException, IllegalAccessException {
 
@@ -58,26 +60,41 @@ public class ButtonActionUtil<T extends GuiControler> {
 		Class<?> type = getControler().getClass();
 		while (type != null && !type.equals(Object.class)) {
 			for (Field field : type.getDeclaredFields()) {
-				if (JButton.class.isAssignableFrom(field.getType())) {
-					String command = field.getName() + "Action";
-					try {
-						Method method = type.getDeclaredMethod(command,
-								ActionEvent.class);
-						method.setAccessible(true);
-						methods.put(command, method);
+				if (JComponent.class.isAssignableFrom(field.getType())) {
+					field.setAccessible(true);
+					JComponent component = (JComponent) field.get(controler);
 
-						field.setAccessible(true);
-						((JButton) field.get(controler))
-								.setActionCommand(command);
-						((JButton) field.get(controler))
-								.addActionListener(actionListener);
-
-					} catch (NoSuchMethodException e) {
-
+					if (component instanceof JButton) {
+						if (findEventMethod(type, component, field.getName()
+								+ "OnClick", ActionEvent.class)) {
+							((JButton) component)
+									.addActionListener(actionListener);
+						}
+					} else if (component instanceof JTextField) {
+						if (findEventMethod(type,
+								((JTextField) component).getDocument(),
+								field.getName() + "OnChange",
+								DocumentEvent.class)) {
+							((JTextField) component).getDocument()
+									.addDocumentListener(actionListener);
+						}
 					}
 				}
 			}
 			type = type.getSuperclass();
+		}
+	}
+
+	private boolean findEventMethod(Class<?> type, Object source,
+			String command, Class<?> eventType) throws NoSuchMethodException {
+		try {
+			System.out.println(String.format("[%s] // [%s]", type.getName(), command));
+			Method method = type.getDeclaredMethod(command, eventType);
+			method.setAccessible(true);
+			methods.put(source, method);
+			return true;
+		} catch (NoSuchMethodException e) {
+			return false;
 		}
 	}
 
@@ -94,7 +111,23 @@ public class ButtonActionUtil<T extends GuiControler> {
 	public Object execute(ActionEvent e) throws IllegalAccessException,
 			IllegalArgumentException, InvocationTargetException,
 			NoSuchMethodException, SecurityException {
-		return execute(e.getActionCommand(), e);
+		return execute((JComponent) e.getSource(), e);
+	}
+
+	/**
+	 * 
+	 * @param e
+	 * @return
+	 * @throws IllegalAccessException
+	 * @throws IllegalArgumentException
+	 * @throws InvocationTargetException
+	 * @throws NoSuchMethodException
+	 * @throws SecurityException
+	 */
+	public Object execute(DocumentEvent e) throws IllegalAccessException,
+			IllegalArgumentException, InvocationTargetException,
+			NoSuchMethodException, SecurityException {
+		return execute(e.getDocument(), e);
 	}
 
 	/**
@@ -108,11 +141,11 @@ public class ButtonActionUtil<T extends GuiControler> {
 	 * @throws NoSuchMethodException
 	 * @throws SecurityException
 	 */
-	public Object execute(String command, ActionEvent e)
+	private Object execute(Object source, Object e)
 			throws IllegalAccessException, IllegalArgumentException,
 			InvocationTargetException, NoSuchMethodException, SecurityException {
-		if (methods.containsKey(command)) {
-			return methods.get(command).invoke(getControler(), e);
+		if (methods.containsKey(source)) {
+			return methods.get(source).invoke(getControler(), e);
 		} else {
 			return null;
 		}
