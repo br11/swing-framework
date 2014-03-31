@@ -3,7 +3,7 @@
  */
 package br.atech.workshop.duplicateCode.app;
 
-import br.atech.workshop.duplicateCode.gui.Gui1;
+import br.atech.workshop.duplicateCode.gui.Gui2;
 
 /**
  * @author marcio
@@ -17,6 +17,6 @@ public class Boot {
 	 * @throws AppException
 	 */
 	public static void main(String[] args) throws AppException {
-		new Gui1(new App()).show();
+		new Gui2(new App()).show();
 	}
 }
