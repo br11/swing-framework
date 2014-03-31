@@ -9,44 +9,49 @@ import java.util.Map;
 
 import javax.swing.JButton;
 
-import br.atech.workshop.bestpractices.gui.ButtonActionListener;
-import br.atech.workshop.bestpractices.gui.iGui;
+import br.atech.workshop.bestpractices.gui.GuiControler;
 
-public class ButtonActionUtil {
+/**
+ * 
+ * @author marcio
+ * 
+ * @param <T>
+ */
+public class ButtonActionUtil<T extends GuiControler> {
+
+	private Map<String, Method> methods = new HashMap<String, Method>();
+
+	private final T controler;
+
+	private AbstractActionListener<T> actionListener;
 
 	/**
 	 * 
 	 * @param controler
-	 * @return
-	 * @throws RuntimeException
-	 *             caused by NoSuchMethodException, SecurityException,
-	 *             IllegalArgumentException or IllegalAccessException.
-	 * 
+	 * @param actionListener
+	 * @throws NoSuchMethodException
+	 * @throws SecurityException
+	 * @throws IllegalArgumentException
+	 * @throws IllegalAccessException
 	 */
-	public static ButtonActionUtil instrument(iGui controler)
-			throws RuntimeException {
-		try {
-			return new ButtonActionUtil(controler);
-		} catch (NoSuchMethodException | SecurityException
-				| IllegalArgumentException | IllegalAccessException e) {
-			throw new RuntimeException(e);
-		}
-	}
+	public ButtonActionUtil(T controler,
+			AbstractActionListener<T> actionListener)
+			throws NoSuchMethodException, SecurityException,
+			IllegalArgumentException, IllegalAccessException {
 
-	private Map<String, Method> methods = new HashMap<String, Method>();
-
-	private final iGui controler;
-
-	private ButtonActionListener actionListener;
-
-	private ButtonActionUtil(iGui controler) throws NoSuchMethodException,
-			SecurityException, IllegalArgumentException, IllegalAccessException {
 		this.controler = controler;
-		this.actionListener = new ButtonActionListener(this);
+		this.actionListener = actionListener;
 
 		init();
 	}
 
+	/**
+	 * 
+	 * @throws NoSuchMethodException
+	 * @throws SecurityException
+	 * @throws IllegalArgumentException
+	 * @throws IllegalAccessException
+	 */
 	void init() throws NoSuchMethodException, SecurityException,
 			IllegalArgumentException, IllegalAccessException {
 
@@ -76,12 +81,33 @@ public class ButtonActionUtil {
 		}
 	}
 
+	/**
+	 * 
+	 * @param e
+	 * @return
+	 * @throws IllegalAccessException
+	 * @throws IllegalArgumentException
+	 * @throws InvocationTargetException
+	 * @throws NoSuchMethodException
+	 * @throws SecurityException
+	 */
 	public Object execute(ActionEvent e) throws IllegalAccessException,
 			IllegalArgumentException, InvocationTargetException,
 			NoSuchMethodException, SecurityException {
 		return execute(e.getActionCommand(), e);
 	}
 
+	/**
+	 * 
+	 * @param command
+	 * @param e
+	 * @return
+	 * @throws IllegalAccessException
+	 * @throws IllegalArgumentException
+	 * @throws InvocationTargetException
+	 * @throws NoSuchMethodException
+	 * @throws SecurityException
+	 */
 	public Object execute(String command, ActionEvent e)
 			throws IllegalAccessException, IllegalArgumentException,
 			InvocationTargetException, NoSuchMethodException, SecurityException {
@@ -92,7 +118,11 @@ public class ButtonActionUtil {
 		}
 	}
 
-	public iGui getControler() {
+	/**
+	 * 
+	 * @return
+	 */
+	public T getControler() {
 		return controler;
 	}
 

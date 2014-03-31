@@ -1,15 +1,13 @@
 package br.atech.workshop.bestpractices.gui;
 
-import br.atech.workshop.bestpractices.util.ButtonActionUtil;
-
 /**
  * 
  * @author marcio
  * 
  */
 public abstract class ActionGui extends AbstractGui {
- 
-	private ButtonActionUtil util;
+
+	private ButtonActionListener<ActionGui> actionListener;
 
 	/*
 	 * (non-Javadoc)
@@ -18,10 +16,10 @@ public abstract class ActionGui extends AbstractGui {
 	 */
 	@Override
 	public void show() {
-		if (util == null) {
-			util = ButtonActionUtil.instrument(this);
+		if (actionListener == null) { 
+			actionListener = new ButtonActionListener<>(this,  new ExceptionHandler(this));
 		}
-
+		
 		super.show();
 	}
 

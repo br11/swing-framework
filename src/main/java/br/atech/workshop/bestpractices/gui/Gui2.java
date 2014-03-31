@@ -27,6 +27,10 @@ public class Gui2 extends ActionGui {
 
 	private final App app;
 
+	/**
+	 * 
+	 * @param app
+	 */
 	public Gui2(App app) {
 		this.app = app;
 
@@ -41,18 +45,38 @@ public class Gui2 extends ActionGui {
 		btn3 = addAction(new JButton("Button 3"));
 	}
 
+	/**
+	 * 
+	 * @param event
+	 * @throws AppException
+	 */
 	protected void btn1Action(ActionEvent event) throws AppException {
 		resultfield.setText(app.feature1(namefield.getText()));
 	}
 
+	/**
+	 * 
+	 * @param event
+	 * @throws AppException
+	 */
 	protected void btn2Action(ActionEvent event) throws AppException {
 		resultfield.setText(app.feature2(namefield.getText()));
 	}
 
+	/**
+	 * 
+	 * @param event
+	 * @throws AppException
+	 */
 	protected void btn3Action(ActionEvent event) throws AppException {
 		resultfield.setText(app.feature3(namefield.getText()));
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see br.atech.workshop.bestpractices.gui.AbstractGui#reset()
+	 */
 	@Override
 	public void reset() {
 		resultfield.setText("");

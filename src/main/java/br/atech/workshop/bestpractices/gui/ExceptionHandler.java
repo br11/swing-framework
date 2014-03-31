@@ -9,13 +9,13 @@ import br.atech.workshop.bestpractices.app.AppException;
  */
 public class ExceptionHandler {
 
-	public iGui gui;
+	public GuiControler gui;
 
 	/**
 	 * 
 	 * @param gui
 	 */
-	public ExceptionHandler(iGui gui) {
+	public ExceptionHandler(GuiControler gui) {
 		this.gui = gui;
 	}
 

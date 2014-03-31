@@ -4,40 +4,37 @@
 package br.atech.workshop.bestpractices.gui;
 
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.lang.reflect.InvocationTargetException;
 
-import br.atech.workshop.bestpractices.util.ButtonActionUtil;
+import br.atech.workshop.bestpractices.util.AbstractActionListener;
 
 /**
- * @author spac2
  * 
+ * @author marcio
+ * 
+ * @param <T>
  */
-public class ButtonActionListener implements ActionListener {
+public class ButtonActionListener<T extends AbstractGui> extends
+		AbstractActionListener<T> {
 
-	private ButtonActionUtil util;
-
-	private ExceptionHandler exHandler;
-
-	public ButtonActionListener(ButtonActionUtil util) {
-		this(util, new ExceptionHandler(util.getControler()));
+	/**
+	 * 
+	 * @param controler
+	 * @param exHandler
+	 */
+	public ButtonActionListener(T controler, ExceptionHandler exHandler) {
+		super(controler, exHandler);
 	}
 
-	public ButtonActionListener(ButtonActionUtil util, ExceptionHandler exHandler) {
-		this.util = util;
-		this.exHandler = exHandler;
-	}
-
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * br.atech.workshop.bestpractices.util.AbstractActionListener#onAction(
+	 * java.awt.event.ActionEvent)
+	 */
 	@Override
-	public void actionPerformed(ActionEvent event) {
-		try {
-			util.getControler().reset();
-			util.execute(event);
-		} catch (InvocationTargetException e) {
-			exHandler.handle(e.getCause());
-		} catch (Exception e) {
-			exHandler.handle(e);
-		}
+	public void onAction(ActionEvent event) throws Exception {
+		getControler().reset();
+		super.onAction(event);
 	}
-
 }

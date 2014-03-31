@@ -13,7 +13,7 @@ import javax.swing.JPanel;
  * @author marcio
  * 
  */
-public abstract class AbstractGui implements iGui {
+public abstract class AbstractGui implements GuiControler {
 
 	protected final JFrame guiFrame;
 
@@ -22,6 +22,9 @@ public abstract class AbstractGui implements iGui {
 	protected final JPanel contentPanel;
 	protected final JPanel actionPanel;
 
+	/**
+	 * 
+	 */
 	public AbstractGui() {
 		guiFrame = new JFrame();
 		guiFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -45,11 +48,21 @@ public abstract class AbstractGui implements iGui {
 
 	}
 
+	/**
+	 * 
+	 * @param component
+	 * @return
+	 */
 	public <T extends JComponent> T addAction(T component) {
 		actionPanel.add(component);
 		return component;
 	}
 
+	/**
+	 * 
+	 * @param component
+	 * @return
+	 */
 	public <T extends JComponent> T addContent(T component) {
 		contentPanel.add(component);
 		return component;
@@ -79,22 +92,19 @@ public abstract class AbstractGui implements iGui {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see br.atech.workshop.bestpractices.gui.iGui#reset()
-	 */
-	@Override
-	public void reset() {
-		messagePanel.setVisible(false);
-		messagelbl.setText("");
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
 	 * @see br.atech.workshop.bestpractices.gui.iGui#show()
 	 */
 	@Override
 	public void show() {
 		guiFrame.setVisible(true);
+	}
+
+	/**
+	 * 
+	 */
+	public void reset() {
+		messagePanel.setVisible(false);
+		messagelbl.setText("");
 	}
 
 }

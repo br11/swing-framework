@@ -28,6 +28,10 @@ public class Gui1 extends AbstractGui {
 
 	private final App app;
 
+	/**
+	 * 
+	 * @param app
+	 */
 	public Gui1(App app) {
 		this.app = app;
 
@@ -46,6 +50,9 @@ public class Gui1 extends AbstractGui {
 		addBtn3Listeners();
 	}
 
+	/**
+	 * 
+	 */
 	protected void addBtn1Listeners() {
 		btn1.addActionListener(new ActionListener() {
 			@Override
@@ -61,6 +68,9 @@ public class Gui1 extends AbstractGui {
 		});
 	}
 
+	/**
+	 * 
+	 */
 	protected void addBtn2Listeners() {
 		btn2.addActionListener(new ActionListener() {
 			@Override
@@ -77,6 +87,9 @@ public class Gui1 extends AbstractGui {
 		});
 	}
 
+	/**
+	 * 
+	 */
 	protected void addBtn3Listeners() {
 		btn3.addActionListener(new ActionListener() {
 			@Override
