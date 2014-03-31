@@ -145,7 +145,7 @@ public class Gui1 extends AbstractGui {
 			 */
 			@Override
 			public void removeUpdate(DocumentEvent e) {
-				changedUpdate(e);
+				onChange(e);
 			}
 
 			/*
@@ -157,7 +157,7 @@ public class Gui1 extends AbstractGui {
 			 */
 			@Override
 			public void insertUpdate(DocumentEvent e) {
-				changedUpdate(e);
+				onChange(e);
 			}
 
 			/*
@@ -169,6 +169,14 @@ public class Gui1 extends AbstractGui {
 			 */
 			@Override
 			public void changedUpdate(DocumentEvent e) {
+				onChange(e);
+			}
+
+			/**
+			 * 
+			 * @param e
+			 */
+			public void onChange(DocumentEvent e) {
 				resultfield.setText("");
 				reset();
 			}

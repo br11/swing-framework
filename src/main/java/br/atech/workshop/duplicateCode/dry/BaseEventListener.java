@@ -79,7 +79,7 @@ public class BaseEventListener<T extends GuiControler> implements
 	 * java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
 	 */
 	@Override
-	public void actionPerformed(ActionEvent event) {
+	public final void actionPerformed(ActionEvent event) {
 		try {
 			onAction(event);
 		} catch (InvocationTargetException e) {
@@ -96,7 +96,7 @@ public class BaseEventListener<T extends GuiControler> implements
 	 * DocumentEvent)
 	 */
 	@Override
-	public void insertUpdate(DocumentEvent event) {
+	public final void insertUpdate(DocumentEvent event) {
 		try {
 			onChange(event);
 		} catch (InvocationTargetException e) {
@@ -113,7 +113,7 @@ public class BaseEventListener<T extends GuiControler> implements
 	 * DocumentEvent)
 	 */
 	@Override
-	public void removeUpdate(DocumentEvent event) {
+	public final void removeUpdate(DocumentEvent event) {
 		try {
 			onChange(event);
 		} catch (InvocationTargetException e) {
@@ -130,7 +130,7 @@ public class BaseEventListener<T extends GuiControler> implements
 	 * DocumentEvent)
 	 */
 	@Override
-	public void changedUpdate(DocumentEvent event) {
+	public final void changedUpdate(DocumentEvent event) {
 		try {
 			onChange(event);
 		} catch (InvocationTargetException e) {
