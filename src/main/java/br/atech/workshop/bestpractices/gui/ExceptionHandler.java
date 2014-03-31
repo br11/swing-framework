@@ -48,7 +48,7 @@ public class ExceptionHandler {
 		}
 
 		if (err instanceof RuntimeException) {
-			return "System internal error. Notify sysadmin";
+			return "System internal error. Notify sysadmin.";
 		}
 
 		return "System Error.";
