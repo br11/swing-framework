@@ -1,6 +1,6 @@
-package br.atech.workshop.bestpractices.gui;
+package br.atech.workshop.duplicateCode.gui;
 
-import br.atech.workshop.bestpractices.app.AppException;
+import br.atech.workshop.duplicateCode.app.AppException;
 
 /**
  * 

@@ -1,4 +1,4 @@
-package br.atech.workshop.bestpractices.gui;
+package br.atech.workshop.duplicateCode.gui;
 
 /**
  * 

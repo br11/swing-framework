@@ -1,4 +1,4 @@
-package br.atech.workshop.bestpractices.util;
+package br.atech.workshop.duplicateCode.util;
 
 import java.awt.event.ActionEvent;
 import java.lang.reflect.Field;
@@ -9,7 +9,7 @@ import java.util.Map;
 
 import javax.swing.JButton;
 
-import br.atech.workshop.bestpractices.gui.GuiControler;
+import br.atech.workshop.duplicateCode.gui.GuiControler;
 
 /**
  * 

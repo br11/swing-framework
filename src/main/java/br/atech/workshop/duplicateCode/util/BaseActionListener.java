@@ -1,14 +1,14 @@
 /**
  * 
  */
-package br.atech.workshop.bestpractices.util;
+package br.atech.workshop.duplicateCode.util;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.lang.reflect.InvocationTargetException;
 
-import br.atech.workshop.bestpractices.gui.ExceptionHandler;
-import br.atech.workshop.bestpractices.gui.GuiControler;
+import br.atech.workshop.duplicateCode.gui.ExceptionHandler;
+import br.atech.workshop.duplicateCode.gui.GuiControler;
 
 /**
  * @author marcio

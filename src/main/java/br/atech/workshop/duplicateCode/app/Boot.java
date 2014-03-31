@@ -1,9 +1,9 @@
 /**
  * 
  */
-package br.atech.workshop.bestpractices.app;
+package br.atech.workshop.duplicateCode.app;
 
-import br.atech.workshop.bestpractices.gui.Gui2;
+import br.atech.workshop.duplicateCode.gui.Gui2;
 
 /**
  * @author marcio

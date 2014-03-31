@@ -1,7 +1,7 @@
 /**
  * 
  */
-package br.atech.workshop.bestpractices.app;
+package br.atech.workshop.duplicateCode.app;
 
 
 /**

@@ -1,4 +1,4 @@
-package br.atech.workshop.bestpractices.gui;
+package br.atech.workshop.duplicateCode.gui;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -7,8 +7,8 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
-import br.atech.workshop.bestpractices.app.App;
-import br.atech.workshop.bestpractices.app.AppException;
+import br.atech.workshop.duplicateCode.app.App;
+import br.atech.workshop.duplicateCode.app.AppException;
 
 /**
  * 

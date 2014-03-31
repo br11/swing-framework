@@ -1,11 +1,11 @@
 /**
  * 
  */
-package br.atech.workshop.bestpractices.gui;
+package br.atech.workshop.duplicateCode.gui;
 
 import java.awt.event.ActionEvent;
 
-import br.atech.workshop.bestpractices.util.BaseActionListener;
+import br.atech.workshop.duplicateCode.util.BaseActionListener;
 
 /**
  * 
