@@ -53,6 +53,8 @@ public class AbstractActionListener<T extends GuiControler> implements
 	public void actionPerformed(ActionEvent event) {
 		try {
 			onAction(event);
+		} catch (InvocationTargetException e) {
+			onException(e.getCause(), event);
 		} catch (Exception e) {
 			onException(e, event);
 		}
@@ -64,11 +66,7 @@ public class AbstractActionListener<T extends GuiControler> implements
 	 * @throws Exception
 	 */
 	public void onAction(ActionEvent event) throws Exception {
-		try {
-			util.execute(event);
-		} catch (InvocationTargetException e) {
-			onException(e.getCause(), event);
-		}
+		util.execute(event);
 	}
 
 	/**

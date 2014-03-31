@@ -15,12 +15,12 @@ import javax.swing.JPanel;
  */
 public abstract class AbstractGui implements GuiControler {
 
-	protected final JFrame guiFrame;
+	private final JFrame guiFrame;
 
-	protected final JPanel messagePanel;
-	protected final JLabel messagelbl;
-	protected final JPanel contentPanel;
-	protected final JPanel actionPanel;
+	private final JPanel messagePanel;
+	private final JLabel messagelbl;
+	private final JPanel contentPanel;
+	private final JPanel actionPanel;
 
 	/**
 	 * 
