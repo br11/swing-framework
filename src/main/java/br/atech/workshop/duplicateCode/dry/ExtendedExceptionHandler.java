@@ -22,7 +22,7 @@ public class ExtendedExceptionHandler extends ExceptionHandler {
 	 * @param t
 	 */
 	public void handle(Throwable t) {
-		if (t instanceof BreakSignal) {
+		if (t instanceof AbortSignal) {
 			return;
 		}
 

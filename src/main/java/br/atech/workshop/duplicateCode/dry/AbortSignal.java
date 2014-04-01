@@ -9,7 +9,7 @@ package br.atech.workshop.duplicateCode.dry;
  * @author marcio
  * 
  */
-public class BreakSignal extends RuntimeException {
+public class AbortSignal extends RuntimeException {
 
 	private static final long serialVersionUID = 1L;
 

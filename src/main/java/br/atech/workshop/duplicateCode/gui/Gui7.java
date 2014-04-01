@@ -3,21 +3,19 @@ package br.atech.workshop.duplicateCode.gui;
 import java.awt.event.ActionEvent;
 
 import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 import br.atech.workshop.duplicateCode.app.App;
 import br.atech.workshop.duplicateCode.app.AppException;
-import br.atech.workshop.duplicateCode.dry.ExtendedGui;
+import br.atech.workshop.duplicateCode.dry.AdvancedGui;
 
 /**
  * 
  * @author marcio
  * 
  */
-public class Gui6a extends ExtendedGui {
+public class Gui7 extends AdvancedGui {
 
 	final JLabel namelbl;
 	final JTextField namefield;
@@ -30,13 +28,11 @@ public class Gui6a extends ExtendedGui {
 
 	private final App app;
 
-	private boolean abort = false;
-	
 	/**
 	 * 
 	 * @param app
 	 */
-	public Gui6a(App app) {
+	public Gui7(App app) {
 		this.app = app;
 
 		namelbl = addContent(new JLabel("Name:"));
@@ -47,8 +43,6 @@ public class Gui6a extends ExtendedGui {
 		btn1 = addAction(new JButton("Button 1"));
 		btn2 = addAction(new JButton("Button 2"));
 		btn3 = addAction(new JButton("Button 3"));
-		
-		getFrame().setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 	}
 
 	/**
@@ -89,8 +83,6 @@ public class Gui6a extends ExtendedGui {
 		super.reset();
 	}
 
-	
-
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -98,44 +90,10 @@ public class Gui6a extends ExtendedGui {
 	 */
 	@Override
 	protected void beforeHide() {
-		abort = JOptionPane.showConfirmDialog(getFrame(),
-				"Do you really want to exit?", "Confirmation",
-				JOptionPane.YES_NO_OPTION) == JOptionPane.NO_OPTION;
-
-		if (abort) {
-			return;
+		if (!confirm("Do you really want to exit?")) {
+			abort();
 		}
 
 		super.beforeHide();
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see br.atech.workshop.duplicateCode.dry.ExtensibleGui#onHide()
-	 */
-	@Override
-	protected void onHide() {
-		if (abort) {
-			return;
-		}
-
-		super.onHide();
-		
-		getFrame().dispose();
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see br.atech.workshop.duplicateCode.dry.ExtendedGui#afterHide()
-	 */
-	@Override
-	protected void afterHide() {
-		if (abort) {
-			return;
-		}
-
-		super.afterHide();
 	}
 }

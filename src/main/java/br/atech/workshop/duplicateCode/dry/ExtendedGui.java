@@ -2,7 +2,6 @@ package br.atech.workshop.duplicateCode.dry;
 
 import javax.swing.JOptionPane;
 
-
 /**
  * Tela com comportamento mais especializado.
  * 
@@ -16,7 +15,7 @@ public class ExtendedGui extends ExtensibleGui {
 	 */
 	public ExtendedGui() {
 		setActionListener(new ExtendedEventListener<>(this,
-				new ExtendedExceptionHandler(this)));
+				new ExceptionHandler(this)));
 	}
 
 	/*
@@ -28,5 +27,15 @@ public class ExtendedGui extends ExtensibleGui {
 	protected void afterHide() {
 		super.afterHide();
 		JOptionPane.showMessageDialog(null, "Good bye!");
+	}
+
+	/**
+	 * 
+	 * @param message
+	 * @return
+	 */
+	protected boolean confirm(String message) {
+		return JOptionPane.showConfirmDialog(getFrame(), message,
+				"Confirmation", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION;
 	}
 }
