@@ -1,22 +1,23 @@
 package br.atech.workshop.duplicateCode.dry;
 
 import br.atech.workshop.duplicateCode.app.AppException;
-import br.atech.workshop.duplicateCode.gui.GuiControler;
+import br.atech.workshop.duplicateCode.gui.GuiController;
 
 /**
+ * Tratamento de exceção de toda a aplicação.
  * 
  * @author marcio
  * 
  */
 public class ExceptionHandler {
 
-	public GuiControler gui;
+	public GuiController gui;
 
 	/**
 	 * 
 	 * @param gui
 	 */
-	public ExceptionHandler(GuiControler gui) {
+	public ExceptionHandler(GuiController gui) {
 		this.gui = gui;
 	}
 
@@ -29,7 +30,7 @@ public class ExceptionHandler {
 
 		String msg = translate(t);
 
-		gui.error(msg);
+		gui.print(msg);
 	}
 
 	/**

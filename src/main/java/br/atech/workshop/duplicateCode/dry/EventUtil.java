@@ -12,21 +12,25 @@ import javax.swing.JComponent;
 import javax.swing.JTextField;
 import javax.swing.event.DocumentEvent;
 
-import br.atech.workshop.duplicateCode.gui.GuiControler;
+import br.atech.workshop.duplicateCode.gui.GuiController;
 
 /**
+ * Instrumenta as telas para adição do comportamento padrão.<br/>
+ * Tags: Código sujo. Faz a mágica. Refletion.
  * 
  * @author marcio
  * 
  * @param <T>
  */
-public class EventUtil<T extends GuiControler> {
+public class EventUtil<T extends GuiController> {
 
 	private Map<Object, Method> methods = new HashMap<Object, Method>();
 
 	private final T controler;
 
-	private BaseEventListener<T> actionListener;
+	private GenericEventListener<T> actionListener;
+
+	private boolean active;
 
 	/**
 	 * 
@@ -37,14 +41,38 @@ public class EventUtil<T extends GuiControler> {
 	 * @throws IllegalArgumentException
 	 * @throws IllegalAccessException
 	 */
-	public EventUtil(T controler, BaseEventListener<T> actionListener)
+	public EventUtil(T controler, GenericEventListener<T> actionListener)
 			throws NoSuchMethodException, SecurityException,
 			IllegalArgumentException, IllegalAccessException {
 
 		this.controler = controler;
 		this.actionListener = actionListener;
+	}
 
-		init();
+	/**
+	 * 
+	 */
+	public void activate() {
+		if (!isActive()) {
+			try {
+				addListener();
+			} catch (NoSuchMethodException | SecurityException
+					| IllegalArgumentException | IllegalAccessException e) {
+				throw new RuntimeException(e);
+			}
+		}
+	}
+
+	/**
+	 * 
+	 */
+	public void deactivate() {
+		try {
+			removeListener();
+		} catch (NoSuchMethodException | SecurityException
+				| IllegalArgumentException | IllegalAccessException e) {
+			throw new RuntimeException(e);
+		}
 	}
 
 	/**
@@ -54,7 +82,7 @@ public class EventUtil<T extends GuiControler> {
 	 * @throws IllegalArgumentException
 	 * @throws IllegalAccessException
 	 */
-	void init() throws NoSuchMethodException, SecurityException,
+	private void addListener() throws NoSuchMethodException, SecurityException,
 			IllegalArgumentException, IllegalAccessException {
 
 		Class<?> controlerType = getControler().getClass();
@@ -89,6 +117,41 @@ public class EventUtil<T extends GuiControler> {
 			}
 			type = type.getSuperclass();
 		}
+
+		active = true;
+	}
+
+	/**
+	 * 
+	 * @throws NoSuchMethodException
+	 * @throws SecurityException
+	 * @throws IllegalArgumentException
+	 * @throws IllegalAccessException
+	 */
+	private void removeListener() throws NoSuchMethodException,
+			SecurityException, IllegalArgumentException, IllegalAccessException {
+
+		Class<?> controlerType = getControler().getClass();
+		Class<?> type = controlerType;
+		while (type != null && !type.equals(Object.class)) {
+			for (Field field : type.getDeclaredFields()) {
+				if (JComponent.class.isAssignableFrom(field.getType())) {
+					field.setAccessible(true);
+					JComponent component = (JComponent) field.get(controler);
+
+					if (component instanceof JButton) {
+						((JButton) component)
+								.removeActionListener(actionListener);
+					} else if (component instanceof JTextField) {
+						((JTextField) component).getDocument()
+								.removeDocumentListener(actionListener);
+					}
+				}
+			}
+			type = type.getSuperclass();
+		}
+
+		active = false;
 	}
 
 	private boolean findEventMethod(Class<?> controlerType, Object source,
@@ -173,4 +236,11 @@ public class EventUtil<T extends GuiControler> {
 		return controler;
 	}
 
+	/**
+	 * 
+	 * @return
+	 */
+	public boolean isActive() {
+		return active;
+	}
 }

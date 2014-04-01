@@ -9,13 +9,15 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 /**
+ * Implementação inicial de uma tela. Define a estrutura de componentes que é
+ * padrão em toda tela.
  * 
  * @author marcio
  * 
  */
-public abstract class AbstractGui implements GuiControler {
+public abstract class AbstractGui implements GuiController {
 
-	private final JFrame guiFrame;
+	private final JFrame frame;
 
 	private final JPanel messagePanel;
 	private final JLabel messagelbl;
@@ -23,14 +25,16 @@ public abstract class AbstractGui implements GuiControler {
 	private final JPanel actionPanel;
 
 	/**
-	 * 
+	 * Construtor
 	 */
 	public AbstractGui() {
-		guiFrame = new JFrame();
-		guiFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		guiFrame.setTitle("Example GUI");
-		guiFrame.setSize(350, 150);
-		guiFrame.setLocationRelativeTo(null);
+		frame = new JFrame();
+		getFrame().setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		getFrame().addWindowListener(new CloseListener(this));
+
+		getFrame().setTitle("Example GUI");
+		getFrame().setSize(350, 150);
+		getFrame().setLocationRelativeTo(null);
 
 		messagePanel = new JPanel();
 		messagePanel.setVisible(false);
@@ -42,13 +46,13 @@ public abstract class AbstractGui implements GuiControler {
 
 		actionPanel = new JPanel();
 
-		guiFrame.add(messagePanel, BorderLayout.NORTH);
-		guiFrame.add(contentPanel, BorderLayout.CENTER);
-		guiFrame.add(actionPanel, BorderLayout.SOUTH);
-
+		getFrame().add(messagePanel, BorderLayout.NORTH);
+		getFrame().add(contentPanel, BorderLayout.CENTER);
+		getFrame().add(actionPanel, BorderLayout.SOUTH);
 	}
 
 	/**
+	 * Adiciona um componente ao painel de ação.
 	 * 
 	 * @param component
 	 * @return
@@ -59,6 +63,7 @@ public abstract class AbstractGui implements GuiControler {
 	}
 
 	/**
+	 * Adiciona um componente ao painel de conteúdo.
 	 * 
 	 * @param component
 	 * @return
@@ -74,7 +79,7 @@ public abstract class AbstractGui implements GuiControler {
 	 * @see br.atech.workshop.bestpractices.gui.iGui#error(java.lang.String)
 	 */
 	@Override
-	public void error(String err) {
+	public void print(String err) {
 		messagePanel.setVisible(true);
 		messagelbl.setText(err);
 	}
@@ -86,7 +91,7 @@ public abstract class AbstractGui implements GuiControler {
 	 */
 	@Override
 	public void hide() {
-		guiFrame.setVisible(false);
+		getFrame().setVisible(false);
 	}
 
 	/*
@@ -96,15 +101,24 @@ public abstract class AbstractGui implements GuiControler {
 	 */
 	@Override
 	public void show() {
-		guiFrame.setVisible(true);
+		getFrame().setVisible(true);
 	}
 
 	/**
-	 * 
+	 * Limpa o painel de mensagens.
 	 */
 	public void reset() {
 		messagePanel.setVisible(false);
 		messagelbl.setText("");
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * @see br.atech.workshop.duplicateCode.gui.GuiController#getFrame()
+	 */
+	@Override
+	public JFrame getFrame() {
+		return frame;
 	}
 
 }

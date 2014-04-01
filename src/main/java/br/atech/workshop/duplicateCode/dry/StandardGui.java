@@ -6,13 +6,15 @@ import br.atech.workshop.duplicateCode.app.AppException;
 import br.atech.workshop.duplicateCode.gui.AbstractGui;
 
 /**
+ * Implementa o comportamento que é padrão nas telas.
  * 
  * @author marcio
  * 
  */
-public abstract class ActionGui extends AbstractGui {
+public abstract class StandardGui extends AbstractGui {
 
-	private CustomEventListener<ActionGui> actionListener;
+	private StandardEventListener<StandardGui> actionListener = new StandardEventListener<>(
+			this, new ExceptionHandler(this));
 
 	/*
 	 * (non-Javadoc)
@@ -21,18 +23,8 @@ public abstract class ActionGui extends AbstractGui {
 	 */
 	@Override
 	public void show() {
-		instrument();
+		actionListener.activate();
 		super.show();
-	}
-
-	/**
-	 * 
-	 */
-	protected void instrument() {
-		if (actionListener == null) {
-			actionListener = new CustomEventListener<>(this,
-					new ExceptionHandler(this));
-		}
 	}
 
 	/**
@@ -43,4 +35,5 @@ public abstract class ActionGui extends AbstractGui {
 	protected void anyOnChange(DocumentEvent event) throws AppException {
 		reset();
 	}
+
 }

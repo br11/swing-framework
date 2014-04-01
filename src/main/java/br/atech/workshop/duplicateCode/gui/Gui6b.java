@@ -4,18 +4,20 @@ import java.awt.event.ActionEvent;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 import br.atech.workshop.duplicateCode.app.App;
 import br.atech.workshop.duplicateCode.app.AppException;
-import br.atech.workshop.duplicateCode.dry.StandardGui;
+import br.atech.workshop.duplicateCode.dry.BreakSignal;
+import br.atech.workshop.duplicateCode.dry.ExtendedGui;
 
 /**
  * 
  * @author marcio
  * 
  */
-public class Gui4 extends StandardGui {
+public class Gui6b extends ExtendedGui {
 
 	final JLabel namelbl;
 	final JTextField namefield;
@@ -32,7 +34,7 @@ public class Gui4 extends StandardGui {
 	 * 
 	 * @param app
 	 */
-	public Gui4(App app) {
+	public Gui6b(App app) {
 		this.app = app;
 
 		namelbl = addContent(new JLabel("Name:"));
@@ -81,5 +83,20 @@ public class Gui4 extends StandardGui {
 	public void reset() {
 		resultfield.setText("");
 		super.reset();
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see br.atech.workshop.duplicateCode.dry.ExtensibleGui#beforeHide()
+	 */
+	@Override
+	protected void beforeHide() {
+		if (JOptionPane.showConfirmDialog(getFrame(),
+				"Do you really want to exit?", "Confirmation",
+				JOptionPane.YES_NO_OPTION) == JOptionPane.NO_OPTION) {
+			throw new BreakSignal();
+		}
+		super.beforeHide();
 	}
 }

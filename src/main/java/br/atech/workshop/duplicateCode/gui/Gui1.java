@@ -72,7 +72,7 @@ public class Gui1 extends AbstractGui {
 					resultfield.setText(app.feature1(namefield.getText()));
 				} catch (AppException e) {
 					e.printStackTrace();
-					error("System Error");
+					print("System Error");
 				}
 			}
 		});
@@ -98,7 +98,7 @@ public class Gui1 extends AbstractGui {
 					resultfield.setText(app.feature2(namefield.getText()));
 				} catch (AppException e) {
 					e.printStackTrace();
-					error("System Error");
+					print("System Error");
 				}
 			}
 		});
@@ -124,7 +124,7 @@ public class Gui1 extends AbstractGui {
 					resultfield.setText(app.feature3(namefield.getText()));
 				} catch (AppException e) {
 					e.printStackTrace();
-					error("System Error");
+					print("System Error");
 				}
 			}
 		});

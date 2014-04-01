@@ -8,20 +8,21 @@ import java.awt.event.ActionEvent;
 import br.atech.workshop.duplicateCode.gui.AbstractGui;
 
 /**
+ * Implementa a paronização do comportamento de tela.
  * 
  * @author marcio
  * 
  * @param <T>
  */
-public class CustomEventListener<T extends AbstractGui> extends
-		BaseEventListener<T> {
- 
+public class StandardEventListener<T extends AbstractGui> extends
+		GenericEventListener<T> {
+
 	/**
 	 * 
 	 * @param controler
 	 * @param exHandler
 	 */
-	public CustomEventListener(T controler, ExceptionHandler exHandler) {
+	public StandardEventListener(T controler, ExceptionHandler exHandler) {
 		super(controler, exHandler);
 	}
 
@@ -33,7 +34,7 @@ public class CustomEventListener<T extends AbstractGui> extends
 	 * java.awt.event.ActionEvent)
 	 */
 	@Override
-	public void onAction(ActionEvent event) throws Exception{
+	public void onAction(ActionEvent event) throws Exception {
 		getControler().reset();
 		super.onAction(event);
 	}

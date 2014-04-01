@@ -4,18 +4,21 @@ import java.awt.event.ActionEvent;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 import br.atech.workshop.duplicateCode.app.App;
 import br.atech.workshop.duplicateCode.app.AppException;
-import br.atech.workshop.duplicateCode.dry.StandardGui;
+import br.atech.workshop.duplicateCode.dry.ExceptionHandler;
+import br.atech.workshop.duplicateCode.dry.ExtendedEventListener;
+import br.atech.workshop.duplicateCode.dry.ExtensibleGui;
 
 /**
  * 
  * @author marcio
  * 
  */
-public class Gui4 extends StandardGui {
+public class Gui5 extends ExtensibleGui {
 
 	final JLabel namelbl;
 	final JTextField namefield;
@@ -32,7 +35,7 @@ public class Gui4 extends StandardGui {
 	 * 
 	 * @param app
 	 */
-	public Gui4(App app) {
+	public Gui5(App app) {
 		this.app = app;
 
 		namelbl = addContent(new JLabel("Name:"));
@@ -43,6 +46,9 @@ public class Gui4 extends StandardGui {
 		btn1 = addAction(new JButton("Button 1"));
 		btn2 = addAction(new JButton("Button 2"));
 		btn3 = addAction(new JButton("Button 3"));
+
+		setActionListener(new ExtendedEventListener<>(this,
+				new ExceptionHandler(this)));
 	}
 
 	/**
@@ -81,5 +87,16 @@ public class Gui4 extends StandardGui {
 	public void reset() {
 		resultfield.setText("");
 		super.reset();
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see br.atech.workshop.duplicateCode.dry.ExtensibleGui#afterHide()
+	 */
+	@Override
+	protected void afterHide() {
+		super.afterHide();
+		JOptionPane.showMessageDialog(null, "Good bye!");
 	}
 }

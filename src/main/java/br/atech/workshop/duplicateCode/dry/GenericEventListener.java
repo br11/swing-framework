@@ -10,13 +10,16 @@ import java.lang.reflect.InvocationTargetException;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
-import br.atech.workshop.duplicateCode.gui.GuiControler;
+import br.atech.workshop.duplicateCode.gui.GuiController;
 
 /**
+ * 
+ * Event listener componentizado para uso nas telas da aplicação.
+ * 
  * @author marcio
  * 
  */
-public class BaseEventListener<T extends GuiControler> implements
+public class GenericEventListener<T extends GuiController> implements
 		ActionListener, DocumentListener {
 
 	private EventUtil<T> util;
@@ -27,7 +30,7 @@ public class BaseEventListener<T extends GuiControler> implements
 	 * @param controler
 	 * @param exHandler
 	 */
-	public BaseEventListener(T controler, ExceptionHandler exHandler) {
+	public GenericEventListener(T controler, ExceptionHandler exHandler) {
 		try {
 			this.util = new EventUtil<T>(controler, this);
 			this.exHandler = exHandler;
@@ -35,6 +38,20 @@ public class BaseEventListener<T extends GuiControler> implements
 				| IllegalArgumentException | IllegalAccessException e) {
 			throw new RuntimeException(e);
 		}
+	}
+
+	/**
+	 * 
+	 */
+	public void activate() {
+		util.activate();
+	}
+
+	/**
+	 * 
+	 */
+	public void deactivate() {
+		util.deactivate();
 	}
 
 	/**
