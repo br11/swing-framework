@@ -12,7 +12,8 @@ import br.atech.workshop.duplicateCode.app.AppException;
 import br.atech.workshop.duplicateCode.dry.ExtendedGui;
 
 /**
- * Vemos que, embora seja possível extender o Framework, nem sempre esta é um
+ * 
+ * Vemos que, embora seja possível extender o Framework, nem sempre esta é uma
  * tarefa simples devido às peculiaridades dos comportamentos das telas que
  * temos que desenvolver.
  * 

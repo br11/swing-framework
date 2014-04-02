@@ -11,9 +11,11 @@ import br.atech.workshop.duplicateCode.app.AppException;
 import br.atech.workshop.duplicateCode.dry.AdvancedGui;
 
 /**
- * Para favorecer o main stream do desenvolvimento temos que dispor de técnicas
- * bastante criativas e, as vezes, polêmicas. O segredo é isolar bem o código
- * que faz o trabalho sujo.
+ * Devido ao seu alto nível de sofisticação, uma ferramenta pode demandar certa
+ * calibragem antes de ser usada. Isto se faz para que esta se ajuste à maneira
+ * como ela será usada. Em desenvolvimento isso pode significar dispor de
+ * técnicas bastante criativas e, as vezes, polêmicas.<br/>
+ * O segredo é isolar bem o código que faz o trabalho "sujo".
  * 
  * @author marcio
  * 
