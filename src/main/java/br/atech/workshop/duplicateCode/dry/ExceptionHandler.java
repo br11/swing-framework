@@ -47,12 +47,10 @@ public class ExceptionHandler {
 
 		if (err instanceof AppException) {
 			return "Could not answer to your request.";
-		}
-
-		if (err instanceof RuntimeException) {
+		} else if (err instanceof RuntimeException) {
 			return "System internal error. Notify sysadmin.";
+		} else {
+			return "System Error.";
 		}
-
-		return "System Error.";
 	}
 }
