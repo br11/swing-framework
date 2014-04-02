@@ -110,5 +110,4 @@ public abstract class AbstractGui {
 	public JFrame getFrame() {
 		return frame;
 	}
-
 }

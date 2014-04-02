@@ -4,6 +4,7 @@ import javax.swing.event.DocumentEvent;
 
 import br.atech.workshop.duplicateCode.app.AppException;
 import br.atech.workshop.duplicateCode.gui.AbstractGui;
+import br.atech.workshop.duplicateCode.gui.Controller;
 import br.atech.workshop.duplicateCode.gui.Gui;
 
 /**
@@ -13,7 +14,8 @@ import br.atech.workshop.duplicateCode.gui.Gui;
  * @author marcio
  * 
  */
-public abstract class StandardGui extends AbstractGui implements Gui {
+public abstract class StandardGui extends AbstractGui implements Gui,
+		Controller {
 
 	private StandardEventListener<StandardGui> actionListener = new StandardEventListener<>(
 			this, new ExceptionHandler(this));
@@ -38,4 +40,13 @@ public abstract class StandardGui extends AbstractGui implements Gui {
 		reset();
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see br.atech.workshop.duplicateCode.gui.Gui#getController()
+	 */
+	@Override
+	public Controller getController() {
+		return this;
+	}
 }

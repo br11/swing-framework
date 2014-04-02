@@ -19,7 +19,7 @@ import br.atech.workshop.duplicateCode.dry.ExceptionHandler;
  * @author marcio
  * 
  */
-public class Gui2 extends AbstractGui implements Gui {
+public class Gui2 extends AbstractGui implements Gui, Controller {
 
 	final JLabel namelbl;
 	final JTextField namefield;
@@ -189,5 +189,14 @@ public class Gui2 extends AbstractGui implements Gui {
 				reset();
 			}
 		});
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * @see br.atech.workshop.duplicateCode.gui.Gui#getController()
+	 */
+	@Override
+	public Controller getController() {
+		return this;
 	}
 }

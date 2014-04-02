@@ -13,7 +13,7 @@ import br.atech.workshop.duplicateCode.app.AppException;
  * @author marcio
  * 
  */
-public class Gui3 extends AbstractGui implements Gui {
+public class Gui3 extends AbstractGui implements Gui, Controller {
 
 	final JLabel namelbl;
 	final JTextField namefield;
@@ -119,5 +119,15 @@ public class Gui3 extends AbstractGui implements Gui {
 	protected void addNamefieldListeners() {
 		namefield.getDocument().addDocumentListener(
 				new DefaultDocumentListener(this));
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see br.atech.workshop.duplicateCode.gui.Gui#getController()
+	 */
+	@Override
+	public Controller getController() {
+		return this;
 	}
 }

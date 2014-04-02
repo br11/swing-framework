@@ -36,4 +36,10 @@ public interface Gui {
 	 * @return
 	 */
 	JFrame getFrame();
+	
+	/**
+	 * 
+	 * @return
+	 */
+	Controller getController();
 }

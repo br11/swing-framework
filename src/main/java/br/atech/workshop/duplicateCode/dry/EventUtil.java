@@ -85,7 +85,7 @@ public class EventUtil<T extends Gui> {
 	private void addListener() throws NoSuchMethodException, SecurityException,
 			IllegalArgumentException, IllegalAccessException {
 
-		Class<?> guiType = getGui().getClass();
+		Class<?> guiType = getGui().getController().getClass();
 		Class<?> type = guiType;
 		while (type != null && !type.equals(Object.class)) {
 			for (Field field : type.getDeclaredFields()) {
