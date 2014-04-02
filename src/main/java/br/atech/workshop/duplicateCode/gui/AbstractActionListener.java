@@ -7,22 +7,23 @@ import br.atech.workshop.duplicateCode.app.AppException;
 import br.atech.workshop.duplicateCode.dry.ExceptionHandler;
 
 /**
+ * Padronização do comportamento de tela.
  * 
  * @author marcio
  * 
  */
 public abstract class AbstractActionListener implements ActionListener {
 
-	private AbstractGui controler;
+	private Gui gui;
 	private ExceptionHandler exHandler;
 
 	/**
 	 * 
-	 * @param controler
+	 * @param gui
 	 */
-	public AbstractActionListener(AbstractGui controler) {
-		this.controler = controler;
-		this.exHandler = new ExceptionHandler(controler);
+	public AbstractActionListener(Gui gui) {
+		this.gui = gui;
+		this.exHandler = new ExceptionHandler(gui);
 	}
 
 	/*
@@ -34,7 +35,7 @@ public abstract class AbstractActionListener implements ActionListener {
 	@Override
 	public final void actionPerformed(ActionEvent event) {
 		try {
-			controler.reset();
+			gui.reset();
 			onAction();
 		} catch (AppException e) {
 			exHandler.handle(e);

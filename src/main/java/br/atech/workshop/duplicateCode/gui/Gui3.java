@@ -8,11 +8,12 @@ import br.atech.workshop.duplicateCode.app.App;
 import br.atech.workshop.duplicateCode.app.AppException;
 
 /**
+ * Eliminação de parte do código duplicado.
  * 
  * @author marcio
  * 
  */
-public class Gui3 extends AbstractGui {
+public class Gui3 extends AbstractGui implements Gui {
 
 	final JLabel namelbl;
 	final JTextField namefield;
@@ -116,6 +117,7 @@ public class Gui3 extends AbstractGui {
 	 * 
 	 */
 	protected void addNamefieldListeners() {
-		namefield.getDocument().addDocumentListener(new DefaultDocumentListener(this));
+		namefield.getDocument().addDocumentListener(
+				new DefaultDocumentListener(this));
 	}
 }

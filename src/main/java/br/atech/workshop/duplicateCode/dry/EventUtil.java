@@ -12,7 +12,7 @@ import javax.swing.JComponent;
 import javax.swing.JTextField;
 import javax.swing.event.DocumentEvent;
 
-import br.atech.workshop.duplicateCode.gui.GuiController;
+import br.atech.workshop.duplicateCode.gui.Gui;
 
 /**
  * Instrumenta as telas para adição do comportamento padrão.<br/>
@@ -22,11 +22,11 @@ import br.atech.workshop.duplicateCode.gui.GuiController;
  * 
  * @param <T>
  */
-public class EventUtil<T extends GuiController> {
+public class EventUtil<T extends Gui> {
 
 	private Map<Object, Method> methods = new HashMap<Object, Method>();
 
-	private final T controler;
+	private final T gui;
 
 	private GenericEventListener<T> actionListener;
 
@@ -34,18 +34,18 @@ public class EventUtil<T extends GuiController> {
 
 	/**
 	 * 
-	 * @param controler
+	 * @param gui
 	 * @param actionListener
 	 * @throws NoSuchMethodException
 	 * @throws SecurityException
 	 * @throws IllegalArgumentException
 	 * @throws IllegalAccessException
 	 */
-	public EventUtil(T controler, GenericEventListener<T> actionListener)
+	public EventUtil(T gui, GenericEventListener<T> actionListener)
 			throws NoSuchMethodException, SecurityException,
 			IllegalArgumentException, IllegalAccessException {
 
-		this.controler = controler;
+		this.gui = gui;
 		this.actionListener = actionListener;
 	}
 
@@ -85,28 +85,28 @@ public class EventUtil<T extends GuiController> {
 	private void addListener() throws NoSuchMethodException, SecurityException,
 			IllegalArgumentException, IllegalAccessException {
 
-		Class<?> controlerType = getControler().getClass();
-		Class<?> type = controlerType;
+		Class<?> guiType = getGui().getClass();
+		Class<?> type = guiType;
 		while (type != null && !type.equals(Object.class)) {
 			for (Field field : type.getDeclaredFields()) {
 				if (JComponent.class.isAssignableFrom(field.getType())) {
 					field.setAccessible(true);
-					JComponent component = (JComponent) field.get(controler);
+					JComponent component = (JComponent) field.get(gui);
 
 					if (component instanceof JButton) {
-						if (findEventMethod(controlerType, component,
+						if (findEventMethod(guiType, component,
 								field.getName() + "OnClick", ActionEvent.class)
-								|| findEventMethod(controlerType, component,
+								|| findEventMethod(guiType, component,
 										"anyOnClick", ActionEvent.class)) {
 							((JButton) component)
 									.addActionListener(actionListener);
 						}
 					} else if (component instanceof JTextField) {
-						if (findEventMethod(controlerType,
+						if (findEventMethod(guiType,
 								((JTextField) component).getDocument(),
 								field.getName() + "OnChange",
 								DocumentEvent.class)
-								|| findEventMethod(controlerType,
+								|| findEventMethod(guiType,
 										((JTextField) component).getDocument(),
 										"anyOnChange", DocumentEvent.class)) {
 							((JTextField) component).getDocument()
@@ -131,13 +131,13 @@ public class EventUtil<T extends GuiController> {
 	private void removeListener() throws NoSuchMethodException,
 			SecurityException, IllegalArgumentException, IllegalAccessException {
 
-		Class<?> controlerType = getControler().getClass();
-		Class<?> type = controlerType;
+		Class<?> guiType = getGui().getClass();
+		Class<?> type = guiType;
 		while (type != null && !type.equals(Object.class)) {
 			for (Field field : type.getDeclaredFields()) {
 				if (JComponent.class.isAssignableFrom(field.getType())) {
 					field.setAccessible(true);
-					JComponent component = (JComponent) field.get(controler);
+					JComponent component = (JComponent) field.get(gui);
 
 					if (component instanceof JButton) {
 						((JButton) component)
@@ -154,11 +154,11 @@ public class EventUtil<T extends GuiController> {
 		active = false;
 	}
 
-	private boolean findEventMethod(Class<?> controlerType, Object source,
+	private boolean findEventMethod(Class<?> guiType, Object source,
 			String command, Class<?> eventType) throws NoSuchMethodException {
 		Method method = null;
 
-		Class<?> type = controlerType;
+		Class<?> type = guiType;
 		while (type != null && !type.equals(Object.class) && method == null) {
 			try {
 				System.out.println(String.format("[%s] // [%s]",
@@ -222,7 +222,7 @@ public class EventUtil<T extends GuiController> {
 			throws IllegalAccessException, IllegalArgumentException,
 			InvocationTargetException, NoSuchMethodException, SecurityException {
 		if (methods.containsKey(source)) {
-			return methods.get(source).invoke(getControler(), e);
+			return methods.get(source).invoke(getGui(), e);
 		} else {
 			return null;
 		}
@@ -232,8 +232,8 @@ public class EventUtil<T extends GuiController> {
 	 * 
 	 * @return
 	 */
-	public T getControler() {
-		return controler;
+	public T getGui() {
+		return gui;
 	}
 
 	/**

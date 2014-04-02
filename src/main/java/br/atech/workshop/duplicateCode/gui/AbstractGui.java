@@ -15,7 +15,7 @@ import javax.swing.JPanel;
  * @author marcio
  * 
  */
-public abstract class AbstractGui implements GuiController {
+public abstract class AbstractGui {
 
 	private final JFrame frame;
 
@@ -30,7 +30,6 @@ public abstract class AbstractGui implements GuiController {
 	public AbstractGui() {
 		frame = new JFrame();
 		getFrame().setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		getFrame().addWindowListener(new CloseListener(this));
 
 		getFrame().setTitle("Example GUI");
 		getFrame().setSize(350, 150);
@@ -73,33 +72,25 @@ public abstract class AbstractGui implements GuiController {
 		return component;
 	}
 
-	/*
-	 * (non-Javadoc)
+	/**
 	 * 
-	 * @see br.atech.workshop.bestpractices.gui.iGui#error(java.lang.String)
+	 * @param err
 	 */
-	@Override
 	public void print(String err) {
 		messagePanel.setVisible(true);
 		messagelbl.setText(err);
 	}
 
-	/*
-	 * (non-Javadoc)
+	/**
 	 * 
-	 * @see br.atech.workshop.bestpractices.gui.iGui#hide()
 	 */
-	@Override
 	public void hide() {
 		getFrame().setVisible(false);
 	}
 
-	/*
-	 * (non-Javadoc)
+	/**
 	 * 
-	 * @see br.atech.workshop.bestpractices.gui.iGui#show()
 	 */
-	@Override
 	public void show() {
 		getFrame().setVisible(true);
 	}
@@ -112,11 +103,10 @@ public abstract class AbstractGui implements GuiController {
 		messagelbl.setText("");
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * @see br.atech.workshop.duplicateCode.gui.GuiController#getFrame()
+	/**
+	 * 
+	 * @return
 	 */
-	@Override
 	public JFrame getFrame() {
 		return frame;
 	}

@@ -3,7 +3,7 @@ package br.atech.workshop.duplicateCode.app;
 /**
  * 
  * @author marcio
- *
+ * 
  */
 public class AppException extends Exception {
 

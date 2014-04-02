@@ -4,6 +4,8 @@ import javax.swing.event.DocumentEvent;
 
 import br.atech.workshop.duplicateCode.app.AppException;
 import br.atech.workshop.duplicateCode.gui.AbstractGui;
+import br.atech.workshop.duplicateCode.gui.CloseListener;
+import br.atech.workshop.duplicateCode.gui.Gui;
 
 /**
  * Implementa o comportamento que é padão nas telas. Permite extender e/ou
@@ -12,15 +14,21 @@ import br.atech.workshop.duplicateCode.gui.AbstractGui;
  * @author marcio
  * 
  */
-public abstract class ExtensibleGui extends AbstractGui {
+public abstract class ExtensibleGui extends AbstractGui implements Gui {
 
 	private StandardEventListener<? extends ExtensibleGui> actionListener = new StandardEventListener<>(
 			this, new ExceptionHandler(this));
 
+	/**
+	 * 
+	 */
+	public ExtensibleGui() {
+		getFrame().addWindowListener(new CloseListener(this));
+	}
+
 	/*
 	 * (non-Javadoc)
-	 * 
-	 * @see br.atech.workshop.bestpractices.gui.iGui#show()
+	 * @see br.atech.workshop.duplicateCode.gui.AbstractGui#show()
 	 */
 	@Override
 	public final void show() {

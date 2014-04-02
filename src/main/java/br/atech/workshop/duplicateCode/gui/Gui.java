@@ -3,34 +3,37 @@ package br.atech.workshop.duplicateCode.gui;
 import javax.swing.JFrame;
 
 /**
- * Processa os eventos da GUI.
  * 
  * @author marcio
  * 
  */
-public interface GuiController {
+public interface Gui {
 
 	/**
 	 * Exibir / Abrir a tela
 	 */
-	public abstract void show();
+	void show();
 
 	/**
 	 * Ocultar / Fechar a tela
 	 */
-	public abstract void hide();
+	void hide();
 
 	/**
 	 * Exibir mensagem
 	 * 
 	 * @param err
 	 */
-	public abstract void print(String err);
+	void print(String err);
+
+	/**
+	 * Prepara para o processamento de um evento.
+	 */
+	void reset();
 
 	/**
 	 * 
 	 * @return
 	 */
-	public JFrame getFrame();
-
+	JFrame getFrame();
 }

@@ -10,13 +10,13 @@ import javax.swing.event.DocumentListener;
  */
 public class DefaultDocumentListener implements DocumentListener {
 
-	private final AbstractGui controler;
+	private final AbstractGui gui;
 
 	/**
-	 * @param controler
+	 * @param gui
 	 */
-	DefaultDocumentListener(AbstractGui controler) {
-		this.controler = controler;
+	DefaultDocumentListener(AbstractGui gui) {
+		this.gui = gui;
 	}
 
 	/*
@@ -57,6 +57,6 @@ public class DefaultDocumentListener implements DocumentListener {
 	 * @param e
 	 */
 	public void onChange(DocumentEvent e) {
-		controler.reset();
+		gui.reset();
 	}
 }

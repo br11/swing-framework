@@ -11,6 +11,9 @@ import br.atech.workshop.duplicateCode.app.AppException;
 import br.atech.workshop.duplicateCode.dry.StandardGui;
 
 /**
+ * Agora temos um Framework que nos permite abstrair aspectos técnicos como
+ * tratamento das exceções, anonymous inner classes, detalhes de APIs. Com isso
+ * ganhamos produtividade na codificação.
  * 
  * @author marcio
  * 

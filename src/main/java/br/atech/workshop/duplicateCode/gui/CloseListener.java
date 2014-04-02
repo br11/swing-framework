@@ -6,25 +6,25 @@ import java.awt.event.WindowListener;
 /**
  * 
  * @author spac2
- *
+ * 
  */
 public class CloseListener implements WindowListener {
 
 	/**
 	 * 
 	 */
-	private final AbstractGui controller;
+	private final AbstractGui gui;
 
 	/**
 	 * @param abstractGui
 	 */
-	public CloseListener(AbstractGui controller) {
-		this.controller = controller;
+	public CloseListener(AbstractGui gui) {
+		this.gui = gui;
 	}
 
 	@Override
 	public void windowClosing(WindowEvent e) {
-		controller.hide();
+		gui.hide();
 	}
 
 	@Override

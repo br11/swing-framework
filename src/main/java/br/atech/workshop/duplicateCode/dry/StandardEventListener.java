@@ -5,7 +5,7 @@ package br.atech.workshop.duplicateCode.dry;
 
 import java.awt.event.ActionEvent;
 
-import br.atech.workshop.duplicateCode.gui.AbstractGui;
+import br.atech.workshop.duplicateCode.gui.Gui;
 
 /**
  * Implementa a paronização do comportamento de tela.
@@ -14,16 +14,16 @@ import br.atech.workshop.duplicateCode.gui.AbstractGui;
  * 
  * @param <T>
  */
-public class StandardEventListener<T extends AbstractGui> extends
+public class StandardEventListener<T extends Gui> extends
 		GenericEventListener<T> {
 
 	/**
 	 * 
-	 * @param controler
+	 * @param gui
 	 * @param exHandler
 	 */
-	public StandardEventListener(T controler, ExceptionHandler exHandler) {
-		super(controler, exHandler);
+	public StandardEventListener(T gui, ExceptionHandler exHandler) {
+		super(gui, exHandler);
 	}
 
 	/*
@@ -35,7 +35,7 @@ public class StandardEventListener<T extends AbstractGui> extends
 	 */
 	@Override
 	public void onAction(ActionEvent event) throws Exception {
-		getControler().reset();
+		getGui().reset();
 		super.onAction(event);
 	}
 }

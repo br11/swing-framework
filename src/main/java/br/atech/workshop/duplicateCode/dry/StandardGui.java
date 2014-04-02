@@ -4,14 +4,16 @@ import javax.swing.event.DocumentEvent;
 
 import br.atech.workshop.duplicateCode.app.AppException;
 import br.atech.workshop.duplicateCode.gui.AbstractGui;
+import br.atech.workshop.duplicateCode.gui.Gui;
 
 /**
- * Implementa o comportamento que é padrão nas telas.
+ * Implementa o comportamento que é padrão nas telas. Permite desenvolver num
+ * nível mais abstrato (Elevado).
  * 
  * @author marcio
  * 
  */
-public abstract class StandardGui extends AbstractGui {
+public abstract class StandardGui extends AbstractGui implements Gui {
 
 	private StandardEventListener<StandardGui> actionListener = new StandardEventListener<>(
 			this, new ExceptionHandler(this));

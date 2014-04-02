@@ -14,11 +14,12 @@ import br.atech.workshop.duplicateCode.app.AppException;
 import br.atech.workshop.duplicateCode.dry.ExceptionHandler;
 
 /**
+ * Melhoria no tratamento de exceção.
  * 
  * @author marcio
  * 
  */
-public class Gui2 extends AbstractGui {
+public class Gui2 extends AbstractGui implements Gui {
 
 	final JLabel namelbl;
 	final JTextField namefield;

@@ -14,6 +14,8 @@ import br.atech.workshop.duplicateCode.dry.ExtendedEventListener;
 import br.atech.workshop.duplicateCode.dry.ExtensibleGui;
 
 /**
+ * Nosso Framework agora é extensível, ou seja, nos fornece facilidades para
+ * acrescentar, modificar e/ou sobrescrever os comportamentos da tela.
  * 
  * @author marcio
  * 

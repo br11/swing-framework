@@ -10,7 +10,7 @@ import java.lang.reflect.InvocationTargetException;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
-import br.atech.workshop.duplicateCode.gui.GuiController;
+import br.atech.workshop.duplicateCode.gui.Gui;
 
 /**
  * 
@@ -19,20 +19,20 @@ import br.atech.workshop.duplicateCode.gui.GuiController;
  * @author marcio
  * 
  */
-public class GenericEventListener<T extends GuiController> implements
-		ActionListener, DocumentListener {
+public class GenericEventListener<T extends Gui> implements ActionListener,
+		DocumentListener {
 
 	private EventUtil<T> util;
 	private ExceptionHandler exHandler;
 
 	/**
 	 * 
-	 * @param controler
+	 * @param gui
 	 * @param exHandler
 	 */
-	public GenericEventListener(T controler, ExceptionHandler exHandler) {
+	public GenericEventListener(T gui, ExceptionHandler exHandler) {
 		try {
-			this.util = new EventUtil<T>(controler, this);
+			this.util = new EventUtil<T>(gui, this);
 			this.exHandler = exHandler;
 		} catch (NoSuchMethodException | SecurityException
 				| IllegalArgumentException | IllegalAccessException e) {
@@ -58,8 +58,8 @@ public class GenericEventListener<T extends GuiController> implements
 	 * 
 	 * @return
 	 */
-	public T getControler() {
-		return util.getControler();
+	public T getGui() {
+		return util.getGui();
 	}
 
 	/**

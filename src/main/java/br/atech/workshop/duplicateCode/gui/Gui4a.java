@@ -8,17 +8,17 @@ import javax.swing.JTextField;
 
 import br.atech.workshop.duplicateCode.app.App;
 import br.atech.workshop.duplicateCode.app.AppException;
-import br.atech.workshop.duplicateCode.dry.AdvancedGui;
+import br.atech.workshop.duplicateCode.dry.SimpleGui;
 
 /**
- * Para favorecer o main stream do desenvolvimento temos que dispor de técnicas
- * bastante criativas e, as vezes, polêmicas. O segredo é isolar bem o código
- * que faz o trabalho sujo.
+ * 
+ * Vemos aqui como o código legado pode evoluir para acompanhar as <i>constantes
+ * variações</i> da especificação.
  * 
  * @author marcio
  * 
  */
-public class Gui7 extends AdvancedGui {
+public class Gui4a extends SimpleGui {
 
 	final JLabel namelbl;
 	final JTextField namefield;
@@ -35,7 +35,7 @@ public class Gui7 extends AdvancedGui {
 	 * 
 	 * @param app
 	 */
-	public Gui7(App app) {
+	public Gui4a(App app) {
 		this.app = app;
 
 		namelbl = addContent(new JLabel("Name:"));
@@ -84,19 +84,5 @@ public class Gui7 extends AdvancedGui {
 	public void reset() {
 		resultfield.setText("");
 		super.reset();
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see br.atech.workshop.duplicateCode.dry.ExtensibleGui#beforeHide()
-	 */
-	@Override
-	protected void beforeHide() {
-		if (!confirm("Do you really want to exit?")) {
-			abort();
-		}
-
-		super.beforeHide();
 	}
 }

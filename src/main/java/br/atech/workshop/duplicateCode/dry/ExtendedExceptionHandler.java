@@ -1,6 +1,6 @@
 package br.atech.workshop.duplicateCode.dry;
 
-import br.atech.workshop.duplicateCode.gui.GuiController;
+import br.atech.workshop.duplicateCode.gui.Gui;
 
 /**
  * Tratamento de exceção de toda a aplicação.
@@ -13,7 +13,7 @@ public class ExtendedExceptionHandler extends ExceptionHandler {
 	 * 
 	 * @param gui
 	 */
-	public ExtendedExceptionHandler(GuiController gui) {
+	public ExtendedExceptionHandler(Gui gui) {
 		super(gui);
 	}
 
