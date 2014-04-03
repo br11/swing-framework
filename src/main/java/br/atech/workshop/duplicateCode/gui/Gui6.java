@@ -42,14 +42,14 @@ public class Gui6 extends ExtendedGui {
 	public Gui6(App app) {
 		this.app = app;
 
-		namelbl = addContent(new JLabel("Name:"));
+		namelbl = addContent(new JLabel("Nome:"));
 		namefield = addContent(new JTextField());
-		resultlbl = addContent(new JLabel("Result:"));
+		resultlbl = addContent(new JLabel("Resultado:"));
 		resultfield = addContent(new JLabel(""));
 
-		btn1 = addAction(new JButton("Button 1"));
-		btn2 = addAction(new JButton("Button 2"));
-		btn3 = addAction(new JButton("Button 3"));
+		btn1 = addAction(new JButton("Dia"));
+		btn2 = addAction(new JButton("Tarde"));
+		btn3 = addAction(new JButton("Noite"));
 
 		getFrame().setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 	}

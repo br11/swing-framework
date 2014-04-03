@@ -19,7 +19,7 @@ public class App {
 	 */
 	public String feature1(String name) throws AppException {
 		takeTime();
-		return String.format("Good morning %s", name);
+		return String.format("Bom dia %s!", name);
 	}
 
 	/**
@@ -30,7 +30,7 @@ public class App {
 	 */
 	public String feature2(String name) throws AppException {
 		takeTime();
-		return String.format("Good afternoon %s", name);
+		return String.format("Boa tarde %s!", name);
 	}
 
 	/**
@@ -41,17 +41,16 @@ public class App {
 	 */
 	public String feature3(String name) throws AppException {
 		takeTime();
+		return String.format("Boa noite %s!", name);
+	}
 
-		if (Math.random() > 0.7) {
-			throw new AppException("error");
-		} else if (Math.random() > 0.5) {
+	private void takeTime() throws AppException {
+		if (Math.random() > 0.9) {
+			throw new AppException("Erro.");
+		} else if (Math.random() > 0.8) {
 			throw new RuntimeException();
 		}
 
-		return String.format("Good night %s", name);
-	}
-
-	private void takeTime() {
 		try {
 			Thread.sleep(700);
 		} catch (InterruptedException e) {

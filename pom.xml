@@ -4,9 +4,9 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>workshop</groupId>
-	<artifactId>duplicate-code</artifactId>
+	<artifactId>swing-framework</artifactId>
 	<version>1.0-SNAPSHOT</version>
-	<name>duplicate-code</name>
+	<name>swing-framework</name>
 	<packaging>jar</packaging>
 
 	<issueManagement>

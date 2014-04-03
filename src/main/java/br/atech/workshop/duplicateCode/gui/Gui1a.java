@@ -44,14 +44,14 @@ public class Gui1a extends AbstractGui {
 	public Gui1a(App app) {
 		this.app = app;
 
-		namelbl = addContent(new JLabel("Name:"));
+		namelbl = addContent(new JLabel("Nome:"));
 		namefield = addContent(new JTextField());
-		resultlbl = addContent(new JLabel("Result:"));
+		resultlbl = addContent(new JLabel("Resultado:"));
 		resultfield = addContent(new JLabel(""));
 
-		btn1 = addAction(new JButton("Button 1"));
-		btn2 = addAction(new JButton("Button 2"));
-		btn3 = addAction(new JButton("Button 3"));
+		btn1 = addAction(new JButton("Dia"));
+		btn2 = addAction(new JButton("Tarde"));
+		btn3 = addAction(new JButton("Noite"));
 
 		addNamefieldListeners();
 

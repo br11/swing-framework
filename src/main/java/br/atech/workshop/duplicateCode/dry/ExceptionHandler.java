@@ -46,11 +46,11 @@ public class ExceptionHandler {
 		}
 
 		if (err instanceof AppException) {
-			return "Could not answer to your request.";
+			return "Não foi possível processar sua requisição.";
 		} else if (err instanceof RuntimeException) {
-			return "System internal error. Notify sysadmin.";
+			return "Falha interna. Notifique o administrador do sistema.";
 		} else {
-			return "System Error.";
+			return "Falha de processamento.";
 		}
 	}
 }
