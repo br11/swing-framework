@@ -8,24 +8,24 @@ import br.atech.workshop.duplicateCode.gui.Gui;
  * @author marcio
  * 
  */
-public class ExtendedExceptionHandler extends ExceptionHandler {
+public class AdvancedExceptionHandler extends ExceptionHandler {
 	/**
 	 * 
 	 * @param gui
 	 */
-	public ExtendedExceptionHandler(Gui gui) {
+	public AdvancedExceptionHandler(Gui gui) {
 		super(gui);
 	}
 
-	/**
-	 * 
-	 * @param t
+	/*
+	 * (non-Javadoc)
+	 * @see br.atech.workshop.duplicateCode.dry.ExceptionHandler#handle(java.lang.Throwable)
 	 */
+	@Override
 	public void handle(Throwable t) {
 		if (t instanceof AbortSignal) {
 			return;
 		}
-
 		super.handle(t);
 	}
 }

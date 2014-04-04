@@ -72,11 +72,11 @@ public class Gui1a extends AbstractGui {
 			@Override
 			public void windowClosing(WindowEvent e) {
 				if (JOptionPane.showConfirmDialog(getFrame(),
-						"Do you really want to exit?", "Confirmation",
+						"Deseja realmente encerrar?", "Confirmação",
 						JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
 
 					hide();
-					JOptionPane.showMessageDialog(null, "Good bye!");
+					JOptionPane.showMessageDialog(null, "Tchau!");
 					getFrame().dispose();
 				}
 			}

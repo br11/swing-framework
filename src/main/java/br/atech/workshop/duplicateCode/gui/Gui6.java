@@ -13,7 +13,7 @@ import br.atech.workshop.duplicateCode.dry.ExtendedGui;
 
 /**
  * 
- * Vemos que, embora seja possível extender o Framework, nem sempre esta é uma
+ * Veremos que, embora seja possível extender o Framework, nem sempre esta é uma
  * tarefa simples devido às peculiaridades dos comportamentos das telas que
  * temos que desenvolver.
  * 
@@ -33,7 +33,7 @@ public class Gui6 extends ExtendedGui {
 
 	private final App app;
 
-	private boolean abort = false;
+	private boolean confirm = false;
 
 	/**
 	 * 
@@ -99,8 +99,8 @@ public class Gui6 extends ExtendedGui {
 	 */
 	@Override
 	protected void beforeHide() {
-		abort = !confirm("Do you really want to exit?");
-		if (abort) {
+		confirm = confirm("Deseja realmente encerrar?");
+		if (!confirm) {
 			return;
 		}
 
@@ -114,7 +114,7 @@ public class Gui6 extends ExtendedGui {
 	 */
 	@Override
 	protected void onHide() {
-		if (abort) {
+		if (!confirm) {
 			return;
 		}
 
@@ -130,7 +130,7 @@ public class Gui6 extends ExtendedGui {
 	 */
 	@Override
 	protected void afterHide() {
-		if (abort) {
+		if (!confirm) {
 			return;
 		}
 

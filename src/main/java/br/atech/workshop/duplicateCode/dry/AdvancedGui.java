@@ -14,7 +14,7 @@ public class AdvancedGui extends ExtendedGui {
 	 */
 	public AdvancedGui() {
 		setActionListener(new ExtendedEventListener<>(this,
-				new ExtendedExceptionHandler(this)));
+				new AdvancedExceptionHandler(this)));
 	}
 
 	/**

@@ -26,7 +26,7 @@ public class ExtendedGui extends ExtensibleGui {
 	@Override
 	protected void afterHide() {
 		super.afterHide();
-		JOptionPane.showMessageDialog(null, "Good bye!");
+		JOptionPane.showMessageDialog(null, "Tchau!");
 	}
 
 	/**
@@ -36,6 +36,6 @@ public class ExtendedGui extends ExtensibleGui {
 	 */
 	protected boolean confirm(String message) {
 		return JOptionPane.showConfirmDialog(getFrame(), message,
-				"Confirmation", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION;
+				"Confirmação", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION;
 	}
 }

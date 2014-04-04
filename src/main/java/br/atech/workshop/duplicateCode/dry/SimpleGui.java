@@ -7,21 +7,14 @@ package br.atech.workshop.duplicateCode.dry;
  * @author marcio
  * 
  */
-public class SimpleGui extends ExtendedGui {
+public class SimpleGui extends AdvancedGui {
 
 	/**
 	 * 
 	 */
 	public SimpleGui() {
 		setActionListener(new ExtendedEventListener<>(this,
-				new ExtendedExceptionHandler(this)));
-	}
-
-	/**
-	 * 
-	 */
-	protected void abort() {
-		throw new AbortSignal();
+				new AdvancedExceptionHandler(this)));
 	}
 
 	/*
@@ -31,7 +24,7 @@ public class SimpleGui extends ExtendedGui {
 	 */
 	@Override
 	protected void beforeHide() {
-		if (!confirm("Do you really want to exit?")) {
+		if (!confirm("Deseja realmente encerrar?")) {
 			abort();
 		}
 

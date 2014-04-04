@@ -161,8 +161,8 @@ public class EventUtil<T extends Gui> {
 		Class<?> type = guiType;
 		while (type != null && !type.equals(Object.class) && method == null) {
 			try {
-				System.out.println(String.format("[%s] // [%s]",
-						type.getName(), command));
+//				System.out.println(String.format("[%s] // [%s]",
+//						type.getName(), command));
 				method = type.getDeclaredMethod(command, eventType);
 				method.setAccessible(true);
 				methods.put(source, method);

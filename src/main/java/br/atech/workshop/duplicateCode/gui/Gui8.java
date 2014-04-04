@@ -4,23 +4,21 @@ import java.awt.event.ActionEvent;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 import br.atech.workshop.duplicateCode.app.App;
 import br.atech.workshop.duplicateCode.app.AppException;
-import br.atech.workshop.duplicateCode.dry.ExceptionHandler;
-import br.atech.workshop.duplicateCode.dry.ExtendedEventListener;
-import br.atech.workshop.duplicateCode.dry.ExtensibleGui;
+import br.atech.workshop.duplicateCode.dry.SimpleGui;
 
 /**
- * Nosso Framework agora é extensível, ou seja, nos fornece facilidades para
- * acrescentar, modificar e/ou sobrescrever os comportamentos da tela.
+ * 
+ * Vemos aqui como o código legado pode evoluir para acompanhar as <i>constantes
+ * variações</i> da especificação.
  * 
  * @author marcio
  * 
  */
-public class Gui5 extends ExtensibleGui {
+public class Gui8 extends SimpleGui {
 
 	final JLabel namelbl;
 	final JTextField namefield;
@@ -37,7 +35,7 @@ public class Gui5 extends ExtensibleGui {
 	 * 
 	 * @param app
 	 */
-	public Gui5(App app) {
+	public Gui8(App app) {
 		this.app = app;
 
 		namelbl = addContent(new JLabel("Nome:"));
@@ -48,9 +46,6 @@ public class Gui5 extends ExtensibleGui {
 		btn1 = addAction(new JButton("Dia"));
 		btn2 = addAction(new JButton("Tarde"));
 		btn3 = addAction(new JButton("Noite"));
-
-		setActionListener(new ExtendedEventListener<>(this,
-				new ExceptionHandler(this)));
 	}
 
 	/**
@@ -89,16 +84,5 @@ public class Gui5 extends ExtensibleGui {
 	public void reset() {
 		resultfield.setText("");
 		super.reset();
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see br.atech.workshop.duplicateCode.dry.ExtensibleGui#afterHide()
-	 */
-	@Override
-	protected void afterHide() {
-		super.afterHide();
-		JOptionPane.showMessageDialog(null, "Tchau!");
 	}
 }
