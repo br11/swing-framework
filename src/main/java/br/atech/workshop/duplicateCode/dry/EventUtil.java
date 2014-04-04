@@ -222,7 +222,7 @@ public class EventUtil<T extends Gui> {
 			throws IllegalAccessException, IllegalArgumentException,
 			InvocationTargetException, NoSuchMethodException, SecurityException {
 		if (methods.containsKey(source)) {
-			return methods.get(source).invoke(getGui(), e);
+			return methods.get(source).invoke(getGui().getController(), e);
 		} else {
 			return null;
 		}
